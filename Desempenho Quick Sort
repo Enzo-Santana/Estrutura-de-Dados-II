@@ -1,0 +1,6 @@
+O desempenho do **Quick Sort** pode variar significativamente dependendo das características da lista de entrada. Em listas **quase ordenadas**, ou seja, aquelas que estão apenas parcialmente ordenadas, o algoritmo pode enfrentar um desempenho 
+subótimo se o pivô não for escolhido de maneira eficiente. Caso o pivô escolhido seja sempre um dos extremos (primeiro ou último elemento), o algoritmo pode se comportar como uma versão ineficiente do **Selection Sort**, levando a um tempo de 
+execução de \(O(n^2)\). Isso ocorre porque, ao particionar o array, ele não conseguirá dividir a lista de forma balanceada, resultando em sublistas de tamanho desigual.Por outro lado, em listas **completamente desordenadas**, o **Quick Sort** 
+geralmente se sai melhor, especialmente se o pivô for escolhido aleatoriamente ou pela estratégia da mediana de três. Nesses casos, o algoritmo tende a dividir o array de maneira mais equilibrada, o que permite que ele opere em sua complexidade 
+média de \(O(n \log n)\). No entanto, em ambos os cenários, o desempenho também pode ser afetado pela distribuição dos dados e pela escolha do pivô. Em listas desordenadas com uma boa escolha de pivô, o **Quick Sort** tem uma performance 
+eficiente, mas se o pivô for escolhido de maneira pobre (por exemplo, sempre o primeiro ou o último elemento), o desempenho pode piorar consideravelmente.
