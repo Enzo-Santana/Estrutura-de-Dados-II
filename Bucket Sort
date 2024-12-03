@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define BUCKET_COUNT 10  // Número de baldes
+
+// Função para ordenar um balde usando Insertion Sort
+void insertionSort(float arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        float key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+// Função para realizar o Bucket Sort
+void bucketSort(float arr[], int n) {
+    if (n <= 0) return;
+
+    // Cria os baldes
+    float buckets[BUCKET_COUNT][n];
+    int bucketSizes[BUCKET_COUNT];  // Tamanho atual de cada balde
+
+    // Inicializa os baldes
+    for (int i = 0; i < BUCKET_COUNT; i++) {
+        bucketSizes[i] = 0;
+    }
+
+    // Distribui os elementos nos baldes
+    for (int i = 0; i < n; i++) {
+        int index = (int)(arr[i] * BUCKET_COUNT);  // Calcula o índice do balde
+        buckets[index][bucketSizes[index]++] = arr[i];
+    }
+
+    // Ordena os baldes individualmente
+    for (int i = 0; i < BUCKET_COUNT; i++) {
+        insertionSort(buckets[i], bucketSizes[i]);
+    }
+
+    // Recolhe os elementos dos baldes de volta no array original
+    int k = 0;
+    for (int i = 0; i < BUCKET_COUNT; i++) {
+        for (int j = 0; j < bucketSizes[i]; j++) {
+            arr[k++] = buckets[i][j];
+        }
+    }
+}
+
+// Função para imprimir o array
+void printArray(float arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%f ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    // Exemplo de array de números em ponto flutuante no intervalo [0, 1)
+    float arr[] = {0.42, 0.32, 0.23, 0.76, 0.53, 0.12, 0.91, 0.39, 0.64};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Array original: \n");
+    printArray(arr, n);
+
+    bucketSort(arr, n);
+
+    printf("Array ordenado: \n");
+    printArray(arr, n);
+
+    return 0;
+}
