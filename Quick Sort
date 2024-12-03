@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Função para trocar dois elementos
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Função para escolher o pivô pelo critério "Pivô Aleatório"
+int choosePivotRandom(int arr[], int low, int high) {
+    return low + rand() % (high - low + 1);  // Seleciona um índice aleatório entre low e high
+}
+
+// Função para escolher o pivô pelo critério "Pivô do Meio"
+int choosePivotMiddle(int arr[], int low, int high) {
+    return (low + high) / 2;  // Seleciona o elemento no meio da lista
+}
+
+// Função para escolher o pivô pelo critério "Pivô do Primeiro Elemento"
+int choosePivotFirst(int arr[], int low, int high) {
+    return low;  // Seleciona o primeiro elemento
+}
+
+// Função para escolher o pivô pela "Mediana de Três" (primeiro, meio, último)
+int choosePivotMedianOfThree(int arr[], int low, int high) {
+    int mid = (low + high) / 2;
+    int a = arr[low], b = arr[mid], c = arr[high];
+
+    // Ordena os três primeiros, meio e últimos elementos
+    if (a > b) swap(&a, &b);
+    if (b > c) swap(&b, &c);
+    if (a > b) swap(&a, &b);
+
+    // Retorna a mediana
+    return (a == arr[low]) ? low : (b == arr[mid]) ? mid : high;
+}
+
+// Função para particionar o array em torno de um pivô
+int partition(int arr[], int low, int high, int pivotIndex) {
+    int pivot = arr[pivotIndex];
+    swap(&arr[pivotIndex], &arr[high]);  // Move o pivô para a posição final
+
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);  // Coloca o pivô em sua posição correta
+    return i + 1;
+}
+
+// Função recursiva de Quick Sort
+void quickSort(int arr[], int low, int high, int (*choosePivot)(int[], int, int)) {
+    if (low < high) {
+        int pivotIndex = choosePivot(arr, low, high);  // Escolhe o pivô de acordo com o critério
+        int partitionIndex = partition(arr, low, high, pivotIndex);  // Particiona o array
+
+        // Recursivamente ordena as duas sublistas
+        quickSort(arr, low, partitionIndex - 1, choosePivot);
+        quickSort(arr, partitionIndex + 1, high, choosePivot);
+    }
+}
+
+// Função para imprimir o array
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    // Inicializa o gerador de números aleatórios
+    srand(time(NULL));
+
+    // Exemplo de array a ser ordenado
+    int arr[] = {10, 7, 8, 9, 1, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Array original: \n");
+    printArray(arr, n);
+
+    // Teste com pivô aleatório
+    quickSort(arr, 0, n - 1, choosePivotRandom);
+    printf("Array ordenado com Pivô Aleatório: \n");
+    printArray(arr, n);
+
+    // Re-inicializando o array para novos testes
+    int arr2[] = {10, 7, 8, 9, 1, 5};
+    quickSort(arr2, 0, n - 1, choosePivotMiddle);
+    printf("Array ordenado com Pivô do Meio: \n");
+    printArray(arr2, n);
+
+    // Re-inicializando o array para novos testes
+    int arr3[] = {10, 7, 8, 9, 1, 5};
+    quickSort(arr3, 0, n - 1, choosePivotFirst);
+    printf("Array ordenado com Pivô do Primeiro Elemento: \n");
+    printArray(arr3, n);
+
+    // Re-inicializando o array para novos testes
+    int arr4[] = {10, 7, 8, 9, 1, 5};
+    quickSort(arr4, 0, n - 1, choosePivotMedianOfThree);
+    printf("Array ordenado com Pivô Mediana de Três: \n");
+    printArray(arr4, n);
+
+    return 0;
+}
