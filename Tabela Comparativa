@@ -1,0 +1,16 @@
+| Tamanho da Lista | Binary Search (O(log n)) | Interpolation Search (O(log log n)) | Jump Search (O(√n)) | Exponential Search (O(log n)) |
+|------------------|-------------------------|-------------------------------------|---------------------|------------------------------|
+| 1,000            | ~0.0001s                 | ~0.00005s                           | ~0.032s             | ~0.0001s                     |
+| 10,000           | ~0.0002s                 | ~0.0001s                            | ~0.1s               | ~0.0002s                     |
+| 100,000          | ~0.0003s                 | ~0.0002s                            | ~0.3s               | ~0.0003s                     |
+| 1,000,000        | ~0.0004s                 | ~0.0003s                            | ~1.0s               | ~0.0004s                     |
+| 10,000,000       | ~0.0005s                 | ~0.0004s                            | ~3.2s               | ~0.0005s                     |
+| 100,000,000      | ~0.0006s                 | ~0.0005s                            | ~10.0s              | ~0.0006s                     |
+
+**Observações**:
+- **Binary Search** tem uma complexidade \(O(\log n)\), o que o torna muito eficiente para listas grandes, mas com um tempo constante superior ao de alguns algoritmos.
+- **Interpolation Search** é mais rápido em listas com distribuição uniforme, já que sua complexidade é \(O(\log \log n)\), mas em listas não uniformemente distribuídas seu desempenho pode piorar.
+- **Jump Search** tem uma complexidade \(O(\sqrt{n})\), sendo mais eficiente para listas de tamanho médio, mas não tão rápido quanto o Binary Search para listas muito grandes.
+- **Exponential Search** é útil para listas em que a posição do elemento não é conhecida, especialmente quando o número de elementos pode ser muito grande. Ele tem uma complexidade similar ao Binary Search, mas é mais eficaz para procurar em listas sem limites bem definidos.
+
+**Nota**: Os tempos de execução apresentados são estimativas gerais e podem variar dependendo da implementação exata e do ambiente de execução.
