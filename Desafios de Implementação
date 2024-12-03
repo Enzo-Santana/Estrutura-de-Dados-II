@@ -1,0 +1,138 @@
+import time
+import random
+
+# Funções de ordenação
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[0]
+    less = [x for x in arr[1:] if x <= pivot]
+    greater = [x for x in arr[1:] if x > pivot]
+    return quick_sort(less) + [pivot] + quick_sort(greater)
+
+def selection_sort(arr):
+    for i in range(len(arr)):
+        min_idx = i
+        for j in range(i+1, len(arr)):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    return arr
+
+# Funções de busca
+def binary_search(arr, x):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+
+def interpolation_search(arr, x):
+    low = 0
+    high = len(arr) - 1
+    while low <= high and arr[low] <= x <= arr[high]:
+        if low == high:
+            if arr[low] == x:
+                return low
+            return -1
+        pos = low + ((x - arr[low]) * (high - low)) // (arr[high] - arr[low])
+        if arr[pos] == x:
+            return pos
+        if arr[pos] < x:
+            low = pos + 1
+        else:
+            high = pos - 1
+    return -1
+
+# Função para comparar os tempos de execução
+def compare_algorithms():
+    print("Escolha um algoritmo de ordenação:")
+    print("1. Merge Sort")
+    print("2. Quick Sort")
+    print("3. Selection Sort")
+    
+    sort_choice = int(input("Digite o número da escolha: "))
+    
+    print("Escolha um algoritmo de busca:")
+    print("1. Binary Search")
+    print("2. Interpolation Search")
+    
+    search_choice = int(input("Digite o número da escolha: "))
+    
+    arr = random.sample(range(1, 1000), 100)  # Lista aleatória para teste
+    
+    print("\nIniciando os testes...")
+    
+    # Ordenação
+    if sort_choice == 1:
+        start_time = time.time()
+        sorted_arr = merge_sort(arr)
+        end_time = time.time()
+        sort_time = end_time - start_time
+        print(f"Merge Sort demorou: {sort_time:.6f} segundos.")
+    elif sort_choice == 2:
+        start_time = time.time()
+        sorted_arr = quick_sort(arr)
+        end_time = time.time()
+        sort_time = end_time - start_time
+        print(f"Quick Sort demorou: {sort_time:.6f} segundos.")
+    elif sort_choice == 3:
+        start_time = time.time()
+        sorted_arr = selection_sort(arr)
+        end_time = time.time()
+        sort_time = end_time - start_time
+        print(f"Selection Sort demorou: {sort_time:.6f} segundos.")
+    else:
+        print("Opção de ordenação inválida.")
+        return
+    
+    # Busca
+    target = random.choice(sorted_arr)  # Escolhe um elemento aleatório para buscar
+    if search_choice == 1:
+        start_time = time.time()
+        result = binary_search(sorted_arr, target)
+        end_time = time.time()
+        search_time = end_time - start_time
+        print(f"Binary Search demorou: {search_time:.6f} segundos.")
+        print(f"Resultado da busca: {'Encontrado' if result != -1 else 'Não encontrado'}")
+    elif search_choice == 2:
+        start_time = time.time()
+        result = interpolation_search(sorted_arr, target)
+        end_time = time.time()
+        search_time = end_time - start_time
+        print(f"Interpolation Search demorou: {search_time:.6f} segundos.")
+        print(f"Resultado da busca: {'Encontrado' if result != -1 else 'Não encontrado'}")
+    else:
+        print("Opção de busca inválida.")
+        return
+
+# Chama a função para comparar os algoritmos
+compare_algorithms()
