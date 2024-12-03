@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+// Função de busca binária
+int binarySearch(char arr[][100], int n, char target[]) {
+    int low = 0, high = n - 1;
+    
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        
+        int res = strcmp(arr[mid], target); // Comparando as palavras
+        
+        // Se a palavra estiver no meio
+        if (res == 0)
+            return mid;
+        
+        // Se a palavra alvo for menor que a palavra no meio
+        if (res > 0)
+            high = mid - 1;
+        // Se a palavra alvo for maior que a palavra no meio
+        else
+            low = mid + 1;
+    }
+    
+    return -1; // Palavra não encontrada
+}
+
+int main() {
+    // Lista de palavras ordenadas
+    char arr[6][100] = {"apple", "banana", "grape", "kiwi", "orange", "pear"};
+    int n = 6;
+    char target[100];
+
+    // Solicita a palavra para busca
+    printf("Digite a palavra a ser buscada: ");
+    scanf("%s", target);
+
+    // Chama a função de busca binária
+    int result = binarySearch(arr, n, target);
+    
+    if (result != -1)
+        printf("A palavra '%s' foi encontrada na posição %d.\n", target, result);
+    else
+        printf("A palavra '%s' não foi encontrada.\n", target);
+    
+    return 0;
+}
