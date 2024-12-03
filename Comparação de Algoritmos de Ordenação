@@ -1,0 +1,49 @@
+# Comparação dos Algoritmos de Ordenação
+
+| Tamanho da Lista | Algoritmo      | Tempo de Execução | Número de Comparações | Observações |
+|------------------|----------------|-------------------|-----------------------|-------------|
+| 1,000            | Shell Sort     | ~0.005s           | ~1,500                | Bom para listas pequenas, mas ineficiente para grandes listas |
+|                  | Merge Sort     | ~0.0002s          | ~1,000                | Excelente para listas grandes, tempo de execução estável |
+|                  | Selection Sort | ~0.01s            | ~500,000              | Ineficiente para listas grandes, O(n^2) |
+|                  | Quick Sort     | ~0.002s           | ~500                  | Bom desempenho na média, O(n log n) em listas aleatórias |
+|                  | Bucket Sort    | ~0.003s           | ~1,000                | Ideal para listas com números uniformemente distribuídos |
+|                  | Radix Sort     | ~0.004s           | ~2,000                | Melhor para listas de inteiros ou strings, em termos de digitação |
+
+| 10,000           | Shell Sort     | ~0.03s            | ~15,000               | O tempo de execução começa a piorar com listas maiores |
+|                  | Merge Sort     | ~0.002s           | ~10,000               | Ainda eficiente, O(n log n) |
+|                  | Selection Sort | ~0.1s             | ~5,000,000            | Muito ineficiente em listas maiores |
+|                  | Quick Sort     | ~0.01s            | ~5,000                | Eficiência média |
+|                  | Bucket Sort    | ~0.02s            | ~10,000               | Eficiente, mas depende da distribuição dos dados |
+|                  | Radix Sort     | ~0.03s            | ~20,000               | Bom desempenho, especialmente em listas de inteiros |
+
+| 100,000          | Shell Sort     | ~0.3s             | ~150,000              | Começa a ser ineficiente, O(n^2) no pior caso |
+|                  | Merge Sort     | ~0.02s            | ~100,000              | Continua eficiente com O(n log n) |
+|                  | Selection Sort | ~1s               | ~50,000,000           | Inaceitavelmente lento para listas grandes |
+|                  | Quick Sort     | ~0.1s             | ~50,000               | Bom desempenho em média, mas pode ser ineficiente no pior caso |
+|                  | Bucket Sort    | ~0.1s             | ~100,000              | Muito bom para listas uniformemente distribuídas |
+|                  | Radix Sort     | ~0.2s             | ~200,000              | Eficiente em listas com números inteiros |
+
+| 1,000,000        | Shell Sort     | ~3s               | ~1,500,000            | Ineficiente para grandes listas |
+|                  | Merge Sort     | ~0.2s             | ~1,000,000            | Mantém a eficiência O(n log n) |
+|                  | Selection Sort | ~10s              | ~500,000,000          | Muito ineficiente para listas grandes |
+|                  | Quick Sort     | ~1s               | ~500,000              | Bom desempenho, mas pode ter problemas com pivôs ruins |
+|                  | Bucket Sort    | ~1s               | ~1,000,000            | Dependente da distribuição dos dados |
+|                  | Radix Sort     | ~2s               | ~2,000,000            | Bom desempenho para inteiros |
+
+| 10,000,000       | Shell Sort     | ~30s              | ~15,000,000           | Extremamente ineficiente |
+|                  | Merge Sort     | ~2s               | ~10,000,000           | A melhor escolha para listas muito grandes |
+|                  | Selection Sort | ~100s             | ~500,000,000          | Praticamente inviável para listas muito grandes |
+|                  | Quick Sort     | ~10s              | ~5,000,000            | Eficiência média, mas ainda utilizável |
+|                  | Bucket Sort    | ~10s              | ~10,000,000           | Depende da distribuição dos dados |
+|                  | Radix Sort     | ~20s              | ~20,000,000           | Funciona bem em inteiros |
+
+## Observações:
+
+- **Shell Sort**: Seu desempenho depende fortemente da sequência de intervalos escolhida. Embora eficiente para listas pequenas, seu desempenho diminui à medida que o tamanho da lista aumenta.
+- **Merge Sort**: É muito eficiente, com complexidade \(O(n \log n)\), especialmente para listas grandes. A desvantagem é que ele requer espaço adicional para armazenar as sublistas.
+- **Selection Sort**: Apesar de ser fácil de implementar, o Selection Sort é ineficiente para listas grandes devido à sua complexidade \(O(n^2)\), tornando-o inviável para listas grandes.
+- **Quick Sort**: Embora sua complexidade média seja \(O(n \log n)\), ele pode ter um desempenho ruim em listas desordenadas ou quando o pivô é mal escolhido. A versão de pior caso tem complexidade \(O(n^2)\), mas isso pode ser mitigado com boas estratégias de escolha de pivô.
+- **Bucket Sort**: Funciona muito bem em listas de números uniformemente distribuídos. Seu desempenho pode piorar significativamente caso a distribuição dos dados seja desigual, pois ele depende da boa distribuição dos elementos.
+- **Radix Sort**: Melhor para listas de inteiros ou strings. Sua complexidade é \(O(nk)\), onde \(k\) é o número de dígitos ou a base dos números, tornando-o extremamente eficiente para listas com inteiros pequenos e médios.
+
+> **Nota**: Os tempos de execução e número de comparações são estimativas gerais baseadas em implementações típicas. A performance real pode variar de acordo com a distribuição dos dados e a implementação específica de cada algoritmo.
