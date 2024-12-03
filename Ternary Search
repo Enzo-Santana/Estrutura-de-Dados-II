@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+// Função para realizar a busca ternária
+int ternarySearch(int arr[], int left, int right, int x) {
+    // Condição de parada: se o intervalo se tornar inválido
+    if (right >= left) {
+        // Calcula os dois pontos médios
+        int mid1 = left + (right - left) / 3;
+        int mid2 = right - (right - left) / 3;
+
+        // Verifica se o elemento procurado é igual ao valor de mid1 ou mid2
+        if (arr[mid1] == x) {
+            return mid1;  // Elemento encontrado no primeiro ponto médio
+        }
+        if (arr[mid2] == x) {
+            return mid2;  // Elemento encontrado no segundo ponto médio
+        }
+
+        // Se o valor é menor que o primeiro ponto médio, a busca continua na primeira parte
+        if (x < arr[mid1]) {
+            return ternarySearch(arr, left, mid1 - 1, x);
+        }
+        // Se o valor é maior que o segundo ponto médio, a busca continua na última parte
+        else if (x > arr[mid2]) {
+            return ternarySearch(arr, mid2 + 1, right, x);
+        }
+        // Caso contrário, a busca continua entre os dois pontos médios
+        else {
+            return ternarySearch(arr, mid1 + 1, mid2 - 1, x);
+        }
+    }
+
+    // Caso o elemento não seja encontrado
+    return -1;
+}
+
+// Função para testar o algoritmo
+int main() {
+    int arr[] = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x = 7;
+
+    int result = ternarySearch(arr, 0, n - 1, x);
+
+    if (result == -1) {
+        printf("Elemento não encontrado!\n");
+    } else {
+        printf("Elemento encontrado no índice %d\n", result);
+    }
+
+    return 0;
+}
