@@ -1,0 +1,93 @@
+#include <stdio.h>
+
+// Função de busca por interpolação
+int interpolationSearch(int arr[], int size, int target) {
+    int low = 0, high = size - 1;
+
+    while (low <= high && target >= arr[low] && target <= arr[high]) {
+        // Estima a posição com base na interpolação
+        int pos = low + ((target - arr[low]) * (high - low) / (arr[high] - arr[low]));
+
+        // Verifica se o elemento foi encontrado
+        if (arr[pos] == target) {
+            return pos;
+        }
+
+        // Ajusta os limites
+        if (arr[pos] < target) {
+            low = pos + 1;
+        } else {
+            high = pos - 1;
+        }
+    }
+
+    return -1; // Retorna -1 se o elemento não foi encontrado
+}
+
+// Função de busca binária
+int binarySearch(int arr[], int size, int target) {
+    int left = 0, right = size - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target) {
+            return mid;
+        }
+        if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return -1; // Retorna -1 se o elemento não foi encontrado
+}
+
+int main() {
+    // Lista ordenada com intervalos uniformes
+    int uniformArr[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+    int sizeUniform = sizeof(uniformArr) / sizeof(uniformArr[0]);
+
+    // Lista ordenada com intervalos não uniformes
+    int nonUniformArr[] = {5, 10, 15, 25, 35, 55, 85, 130};
+    int sizeNonUniform = sizeof(nonUniformArr) / sizeof(nonUniformArr[0]);
+
+    int target = 55;
+
+    // Testando com intervalos uniformes
+    printf("Busca em lista com intervalos uniformes:\n");
+    int resultInterpolation = interpolationSearch(uniformArr, sizeUniform, target);
+    int resultBinary = binarySearch(uniformArr, sizeUniform, target);
+    printf("Interpolation Search: ");
+    if (resultInterpolation != -1) {
+        printf("Elemento encontrado no índice %d.\n", resultInterpolation);
+    } else {
+        printf("Elemento não encontrado.\n");
+    }
+    printf("Binary Search: ");
+    if (resultBinary != -1) {
+        printf("Elemento encontrado no índice %d.\n", resultBinary);
+    } else {
+        printf("Elemento não encontrado.\n");
+    }
+
+    // Testando com intervalos não uniformes
+    printf("\nBusca em lista com intervalos não uniformes:\n");
+    resultInterpolation = interpolationSearch(nonUniformArr, sizeNonUniform, target);
+    resultBinary = binarySearch(nonUniformArr, sizeNonUniform, target);
+    printf("Interpolation Search: ");
+    if (resultInterpolation != -1) {
+        printf("Elemento encontrado no índice %d.\n", resultInterpolation);
+    } else {
+        printf("Elemento não encontrado.\n");
+    }
+    printf("Binary Search: ");
+    if (resultBinary != -1) {
+        printf("Elemento encontrado no índice %d.\n", resultBinary);
+    } else {
+        printf("Elemento não encontrado.\n");
+    }
+
+    return 0;
+}
