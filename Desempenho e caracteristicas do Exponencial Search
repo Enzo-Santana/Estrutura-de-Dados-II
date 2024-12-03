@@ -1,0 +1,4 @@
+O Exponential Search combina elementos do Jump Search e Binary Search ao iniciar com uma abordagem semelhante ao Jump Search, expandindo o intervalo de busca exponencialmente para localizar o segmento onde o elemento alvo pode estar. 
+Essa expansão inicial é eficiente porque reduz o número de elementos a serem inspecionados antes de aplicar a busca precisa. Após identificar o intervalo, o algoritmo realiza uma Binary Search dentro desse segmento, aproveitando sua 
+eficiência 𝑂(log𝑛) para localizar o elemento com precisão. Em listas muito grandes, o Exponential Search é altamente eficiente, especialmente se o elemento está localizado nas primeiras posições, pois a expansão exponencial reduz rapidamente o 
+espaço de busca. No entanto, em listas pequenas, a vantagem do Exponential Search diminui, pois o custo da expansão pode não ser compensado, tornando o Binary Search uma escolha mais direta e econômica.
