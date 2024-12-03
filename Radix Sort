@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Função para encontrar o valor máximo na lista
+int getMax(int arr[], int n) {
+    int max = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+// Função de Counting Sort para ordenar os elementos de acordo com o dígito atual
+void countingSort(int arr[], int n, int exp) {
+    int output[n];  // Array de saída
+    int count[10] = {0};  // Contador para os dígitos (0-9)
+
+    // Contagem da frequência dos dígitos
+    for (int i = 0; i < n; i++) {
+        count[(arr[i] / exp) % 10]++;
+    }
+
+    // Modificar count[i] para que agora contenha a posição final de cada dígito
+    for (int i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    // Colocar os elementos ordenados no array de saída
+    for (int i = n - 1; i >= 0; i--) {
+        int digit = (arr[i] / exp) % 10;
+        output[count[digit] - 1] = arr[i];
+        count[digit]--;
+    }
+
+    // Copiar o array de saída de volta para o array original
+    for (int i = 0; i < n; i++) {
+        arr[i] = output[i];
+    }
+}
+
+// Função principal do Radix Sort
+void radixSort(int arr[], int n) {
+    // Encontra o valor máximo para determinar o número de dígitos
+    int max = getMax(arr, n);
+
+    // Faz a ordenação por cada dígito (começando do dígito menos significativo)
+    for (int exp = 1; max / exp > 0; exp *= 10) {
+        countingSort(arr, n, exp);
+    }
+}
+
+// Função para imprimir o array
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    // Teste com diferentes tamanhos de arrays
+    int arr1[] = {170, 45, 75, 90, 802, 24, 2, 66};
+    int n1 = sizeof(arr1) / sizeof(arr1[0]);
+
+    printf("Array original 1: \n");
+    printArray(arr1, n1);
+
+    radixSort(arr1, n1);
+
+    printf("Array ordenado 1: \n");
+    printArray(arr1, n1);
+
+    int arr2[] = {54, 546, 17, 215, 78, 42, 88, 5, 9};
+    int n2 = sizeof(arr2) / sizeof(arr2[0]);
+
+    printf("Array original 2: \n");
+    printArray(arr2, n2);
+
+    radixSort(arr2, n2);
+
+    printf("Array ordenado 2: \n");
+    printArray(arr2, n2);
+
+    return 0;
+}
