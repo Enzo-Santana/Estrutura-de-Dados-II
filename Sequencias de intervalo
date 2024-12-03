@@ -1,0 +1,5 @@
+A escolha da sequência de intervalos no Shell Sort tem um impacto significativo na eficiência do algoritmo, especialmente em listas grandes. A sequência de Shell, que diminui os intervalos pela metade a cada iteração, tende a ser a menos 
+eficiente, pois os intervalos tornam-se muito pequenos rapidamente, o que resulta em um grande número de comparações ineficazes em estágios finais. Isso aumenta o tempo de execução, especialmente em listas grandes. A sequência de Knuth, por 
+outro lado, é mais eficiente, pois os intervalos crescem de forma mais controlada e eficaz, o que reduz o número total de comparações necessárias, resultando em tempos de execução mais rápidos. A sequência de Hibbard, que utiliza intervalos 
+como 2^𝑘−1, oferece uma melhoria considerável sobre a sequência de Shell, mas normalmente não atinge a mesma eficiência da sequência de Knuth, especialmente em listas muito grandes. Em termos de desempenho, a sequência de Knuth é, em geral, a 
+mais eficiente, seguida pela de Hibbard, e finalmente a sequência de Shell, que tende a ser mais lenta devido ao seu padrão de intervalos menos otimizado.
