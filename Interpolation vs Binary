@@ -1,0 +1,7 @@
+O Interpolation Search é mais eficiente que o Binary Search em casos em que os dados estão distribuídos de forma aproximadamente uniforme, pois ele utiliza uma fórmula para estimar diretamente a posição do elemento desejado com base na
+proporção entre o valor procurado e os valores mínimo e máximo da lista. Isso reduz significativamente o número de comparações em cenários onde a distribuição é linear ou previsível. Por exemplo, em uma lista ordenada com intervalos uniformes, 
+como {10, 20, 30, 40, 50}, se o elemento procurado for 50, o Interpolation Search pode localizá-lo em uma única iteração, enquanto o Binary Search precisará de pelo menos dois passos para dividir a lista ao meio e convergir ao elemento.
+
+No entanto, em listas onde os intervalos são não uniformes, como {5, 10, 15, 25, 35, 55, 85, 130}, o Interpolation Search pode realizar estimativas menos precisas, resultando em mais iterações, enquanto o Binary Search mantém sua eficiência ao 
+dividir a lista sistematicamente ao meio, independentemente da distribuição dos dados. Portanto, o Interpolation Search é mais eficiente principalmente em listas de tamanho grande e com dados bem distribuídos. Em listas menores ou com 
+distribuição irregular, o Binary Search é mais confiável e consistente.
