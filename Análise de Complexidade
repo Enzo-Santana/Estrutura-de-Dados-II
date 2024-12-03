@@ -1,0 +1,56 @@
+# Análise da Complexidade de Tempo e Espaço
+
+## Algoritmos de Busca
+
+| Algoritmo           | Complexidade de Tempo      | Complexidade de Espaço    | Observações                                                                 |
+|---------------------|----------------------------|---------------------------|-----------------------------------------------------------------------------|
+| **Binary Search**    | Melhor: O(log n)           | O(1)                      | Requer uma lista ordenada e divide a lista ao meio em cada iteração. O desempenho é muito bom em listas grandes. |
+| **Interpolation Search** | Melhor: O(log log n)     | O(1)                      | Melhor desempenho em listas com distribuição uniforme de dados. Pode falhar em listas com distribuição irregular. |
+| **Jump Search**      | O(√n)                      | O(1)                      | Bom para listas ordenadas, especialmente para listas de tamanho médio. A sobrecarga de execução pode tornar-se alta em listas grandes. |
+| **Exponential Search** | O(log n)                  | O(1)                      | Funciona bem em listas onde a posição do elemento é desconhecida, mas é mais útil para listas grandes e dinâmicas. |
+
+## Algoritmos de Ordenação
+
+| Algoritmo           | Complexidade de Tempo      | Complexidade de Espaço    | Observações                                                                 |
+|---------------------|----------------------------|---------------------------|-----------------------------------------------------------------------------|
+| **Shell Sort**       | Melhor: O(n log n), Pior: O(n^2) | O(1)                      | Depende da sequência de intervalos utilizada. Melhor para listas pequenas e médias. |
+| **Merge Sort**       | O(n log n)                 | O(n)                      | É eficiente para listas grandes e estável, mas requer memória extra para as sublistas. |
+| **Selection Sort**   | O(n^2)                     | O(1)                      | Ineficiente para listas grandes devido ao seu desempenho quadrático. Fácil de implementar, mas imprático em listas grandes. |
+| **Quick Sort**       | Melhor: O(n log n), Pior: O(n^2) | O(log n) (recursivo)      | Boa escolha para listas desordenadas, mas pode sofrer desempenho ruim dependendo da escolha do pivô. Pode ser otimizado para evitar o pior caso. |
+| **Bucket Sort**      | O(n + k)                   | O(n + k)                  | Melhor para listas com dados uniformemente distribuídos. Usa mais memória para armazenar os baldes. |
+| **Radix Sort**       | O(nk)                      | O(n + k)                  | Eficiente para listas com inteiros pequenos ou strings. O valor de "k" é o número de dígitos ou a base dos números, o que pode ser pequeno para inteiros pequenos. |
+
+## Explicações Adicionais:
+
+### Busca Binária
+A busca binária é eficiente com tempo de execução \(O(\log n)\), mas requer que a lista esteja ordenada. Ela utiliza um espaço constante \(O(1)\) porque não precisa de espaço adicional além do necessário para a pesquisa.
+
+### Interpolation Search
+Embora tenha uma complexidade de tempo de \(O(\log \log n)\) no melhor caso, a busca por interpolação pode ser mais lenta e até falhar se a lista não tiver uma distribuição uniforme de dados, o que a torna menos confiável em listas irregulares. Ela também tem uma complexidade de espaço de \(O(1)\).
+
+### Jump Search
+O Jump Search divide a lista em blocos e faz uma busca linear dentro do bloco encontrado. Sua complexidade de tempo é \(O(\sqrt{n})\), o que o torna menos eficiente para listas muito grandes. Ele também tem uma complexidade de espaço \(O(1)\), já que não exige memória adicional além da lista original.
+
+### Exponential Search
+O Exponential Search tem um tempo de execução de \(O(\log n)\), como a busca binária, mas é útil quando o tamanho da lista é desconhecido ou quando a lista está em crescimento dinâmico. Sua complexidade de espaço é \(O(1)\).
+
+---
+
+### Shell Sort
+O Shell Sort é uma versão melhorada do Insertion Sort, mas sua complexidade depende da sequência de intervalos utilizada. Em seu melhor caso, pode ter complexidade de \(O(n \log n)\), mas em seu pior caso, pode ser \(O(n^2)\). Ele é eficiente para listas pequenas e médias, mas o uso de memória é constante (\(O(1)\)).
+
+### Merge Sort
+O Merge Sort é um algoritmo eficiente com complexidade \(O(n \log n)\). Ele é estável e eficiente para grandes listas, mas exige \(O(n)\) de memória extra para armazenar as sublistas durante o processo de fusão.
+
+### Selection Sort
+Com uma complexidade de \(O(n^2)\), o Selection Sort é ineficiente para listas grandes. Ele tem a vantagem de ser um algoritmo in-place, consumindo apenas \(O(1)\) de espaço extra, mas o tempo de execução torna-o impraticável para listas grandes.
+
+### Quick Sort
+Embora o Quick Sort tenha uma complexidade de \(O(n \log n)\) no melhor caso, ele pode ter um desempenho de \(O(n^2)\) no pior caso se o pivô não for escolhido adequadamente. Em termos de espaço, o Quick Sort usa \(O(\log n)\) de espaço devido à recursão. É um algoritmo muito eficiente na prática quando otimizado.
+
+### Bucket Sort
+O Bucket Sort é muito eficiente para listas com elementos uniformemente distribuídos, com complexidade de \(O(n + k)\), onde \(k\) é o número de baldes. No entanto, ele exige \(O(n + k)\) de espaço extra, o que pode ser um problema se o número de baldes for grande.
+
+### Radix Sort
+O Radix Sort é eficiente quando se lida com inteiros ou strings e tem complexidade \(O(nk)\), onde \(k\) é o número de dígitos ou a base. Ele também exige \(O(n + k)\) de espaço extra. Para listas de inteiros com poucos dígitos, o Radix Sort pode ser muito eficiente, mas sua dependência de \(k\) pode fazer com que seja menos útil para listas com números muito grandes.
+
