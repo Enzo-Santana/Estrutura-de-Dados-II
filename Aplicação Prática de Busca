@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+
+// Definição de uma estrutura para o registro do livro
+typedef struct {
+    char title[100];
+    char isbn[20];
+} Book;
+
+// Função de busca binária para procurar livro por ISBN
+int binarySearch(Book arr[], int n, char targetIsbn[]) {
+    int low = 0, high = n - 1;
+    
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        
+        // Comparar o ISBN no meio com o ISBN alvo
+        int res = strcmp(arr[mid].isbn, targetIsbn);
+        
+        // Se o ISBN estiver no meio
+        if (res == 0)
+            return mid;
+        
+        // Se o ISBN alvo for menor que o do meio
+        if (res < 0)
+            high = mid - 1;
+        // Se o ISBN alvo for maior que o do meio
+        else
+            low = mid + 1;
+    }
+    
+    return -1; // Livro não encontrado
+}
+
+int main() {
+    // Lista de livros ordenada por ISBN
+    Book library[] = {
+        {"The Great Gatsby", "9780743273565"},
+        {"1984", "9780451524935"},
+        {"To Kill a Mockingbird", "9780061120084"},
+        {"The Catcher in the Rye", "9780316769488"},
+        {"Pride and Prejudice", "9780141040349"}
+    };
+    int n = sizeof(library) / sizeof(library[0]); // Número de livros
+    char targetIsbn[20];
+    
+    // Solicita o ISBN do livro para busca
+    printf("Digite o ISBN do livro a ser buscado: ");
+    scanf("%s", targetIsbn);
+    
+    // Chama a função de busca binária
+    int result = binarySearch(library, n, targetIsbn);
+    
+    if (result != -1)
+        printf("Livro encontrado: %s, ISBN: %s\n", library[result].title, library[result].isbn);
+    else
+        printf("Livro não encontrado.\n");
+    
+    return 0;
+}
