@@ -1,0 +1,5 @@
+O conceito de "dividir para conquistar" é um princípio fundamental do **Merge Sort** e de muitos outros algoritmos eficientes. Ele se baseia na ideia de dividir um problema complexo em subproblemas menores e mais fáceis de resolver, e então 
+combinar as soluções desses subproblemas para obter a solução do problema original. No caso do Merge Sort, o array original é repetidamente dividido ao meio até que cada sublista contenha apenas um único elemento, que é trivialmente considerado 
+ordenado. Em seguida, essas sublistas ordenadas são combinadas (ou "conquistadas") de forma eficiente, comparando elementos das duas metades e reconstruindo o array de forma ordenada. Esse processo de dividir a lista em partes menores e 
+ordená-las independentemente permite que o Merge Sort alcance uma eficiência \(O(n \log n)\), mesmo em grandes conjuntos de dados. A eficiência do algoritmo vem da maneira como ele resolve o problema localmente nas sublistas e, finalmente, 
+combina essas soluções locais para formar a solução global.
