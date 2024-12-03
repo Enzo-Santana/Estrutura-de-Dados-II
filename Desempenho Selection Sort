@@ -1,0 +1,6 @@
+O Selection Sort é um algoritmo simples e intuitivo, mas sua performance não é a mais eficiente, especialmente em listas maiores. Em listas pequenas, seu desempenho é razoavelmente aceitável devido ao número limitado de elementos e à 
+simplicidade do algoritmo. Porém, à medida que o tamanho da lista aumenta, o tempo de execução cresce de forma quadrática, ou seja, 𝑂(𝑛^2), o que torna o algoritmo significativamente mais lento em listas médias e grandes. Em uma lista de tamanho
+médio, a ineficiência se torna mais perceptível, pois o Selection Sort ainda realiza comparações e trocas desnecessárias, mesmo quando o array já está parcialmente ordenado. Em listas muito grandes, o desempenho do Selection Sort é 
+consideravelmente inferior a algoritmos mais eficientes, como o Merge Sort ou Quick Sort, que possuem complexidade 𝑂(𝑛log𝑛). A principal limitação do Selection Sort é que ele sempre percorre a lista inteira para encontrar o menor (ou maior) 
+elemento, mesmo quando os elementos já estão próximos da ordem correta, o que resulta em um número elevado de comparações e trocas desnecessárias. Portanto, embora seja eficaz para listas pequenas ou em situações onde a simplicidade do código 
+seja a prioridade, o Selection Sort não é adequado para uso em listas grandes, onde o tempo de execução pode ser proibitivo.
