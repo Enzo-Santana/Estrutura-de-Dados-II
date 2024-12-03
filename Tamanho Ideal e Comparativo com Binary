@@ -1,0 +1,34 @@
+# Jump Search: Tamanho Ideal do Salto e Comparação com Binary Search
+
+## Determinação do Tamanho Ideal do Salto
+
+O tamanho ideal do "salto" no **Jump Search** para uma lista de tamanho \(n\) é \(\sqrt{n}\). Esse valor é derivado para minimizar o tempo total de execução do algoritmo, que combina dois passos: 
+
+1. **Saltos fixos pela lista**: O algoritmo realiza aproximadamente \(\sqrt{n}\) saltos para encontrar o intervalo onde o elemento procurado pode estar.
+2. **Busca linear dentro do intervalo**: Após encontrar o intervalo correto, o algoritmo faz no máximo \(\sqrt{n} - 1\) comparações lineares.
+
+Assim, o custo total do Jump Search é \(O(\sqrt{n})\), tornando-o mais eficiente que a busca linear (\(O(n)\)), mas menos eficiente que o Binary Search (\(O(\log n)\)).
+
+---
+
+## Comparação: Jump Search vs Binary Search
+
+O **Jump Search** e o **Binary Search** têm desempenhos diferentes dependendo do tamanho e das características da lista:
+
+- **Listas pequenas**: A diferença de desempenho entre Jump Search e Binary Search é menos pronunciada, mas o Binary Search ainda tende a ser mais rápido.
+- **Listas grandes**: O Binary Search é significativamente mais eficiente. Por exemplo:
+  - Para uma lista de \(n = 10^6\) elementos:
+    - Binary Search realiza cerca de \( \log_2(10^6) \approx 20 \) comparações.
+    - Jump Search realiza cerca de \(\sqrt{10^6} = 1000\) comparações.
+- **Casos específicos**: O Jump Search é útil quando a lista é armazenada em dispositivos com restrições de acesso aleatório (como memória sequencial) ou quando o custo de pular entre blocos é menor do que o custo de acesso aleatório.
+
+---
+
+## Resumo
+
+| **Algoritmo**   | **Complexidade** | **Vantagens**                                                                 | **Desvantagens**                                                       |
+|------------------|------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| **Jump Search**  | \(O(\sqrt{n})\)  | Adequado para listas armazenadas sequencialmente e para dispositivos lentos. | Menos eficiente que Binary Search em listas grandes.                  |
+| **Binary Search**| \(O(\log n)\)    | Muito eficiente em listas grandes e com acesso aleatório rápido.             | Requer acesso aleatório, o que pode ser caro em algumas arquiteturas. |
+
+O Jump Search é, portanto, uma alternativa útil em cenários onde os custos de acesso sequencial e aleatório diferem significativamente, mas o Binary Search permanece a escolha padrão para a maioria dos casos devido à sua maior eficiência geral.
