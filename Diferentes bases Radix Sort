@@ -1,0 +1,6 @@
+O algoritmo **Radix Sort** pode ser adaptado para trabalhar com diferentes bases numéricas, como binário (base 2), decimal (base 10), ou hexadecimal (base 16), ajustando o processo de ordenação de acordo com a base utilizada. A base determina a 
+quantidade de dígitos possíveis para cada posição, afetando diretamente como os números são distribuídos nos baldes durante o processo de ordenação. Em um sistema decimal, por exemplo, cada dígito varia de 0 a 9, enquanto em um sistema binário, 
+cada dígito (ou bit) é 0 ou 1. A base influencia a quantidade de iterações necessárias para ordenar os números: em uma base menor (como binária), os números podem ser classificados mais rapidamente, já que o número de dígitos é menor, mas a 
+distribuição dos números no array também muda conforme a base. A cada iteração, o Radix Sort ordena os números com base em cada dígito correspondente à base escolhida. Assim, ao mudar a base, o algoritmo pode ser mais eficiente em determinados 
+contextos, ajustando a quantidade de passes necessários. No entanto, ao escolher uma base muito grande, o número de passes diminui, mas a quantidade de elementos distribuídos nos baldes pode aumentar, o que pode afetar a eficiência do algoritmo 
+dependendo da distribuição dos dados.
