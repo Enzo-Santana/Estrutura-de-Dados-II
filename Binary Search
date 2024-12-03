@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+// Função de busca binária
+int binarySearch(int arr[], int size, int target) {
+    int left = 0;
+    int right = size - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2; // Evita overflow em (left + right) / 2
+
+        // Verifica se o elemento está no meio
+        if (arr[mid] == target) {
+            return mid; // Retorna o índice do elemento encontrado
+        }
+
+        // Se o elemento está à direita
+        if (arr[mid] < target) {
+            left = mid + 1;
+        } else { // Se o elemento está à esquerda
+            right = mid - 1;
+        }
+    }
+
+    return -1; // Retorna -1 se o elemento não foi encontrado
+}
+
+int main() {
+    // Exemplo de lista ordenada
+    int arr[] = {2, 3, 5, 7, 11, 13, 17, 19};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    int target = 7; // Elemento a ser buscado
+    int result = binarySearch(arr, size, target);
+
+    if (result != -1) {
+        printf("Elemento encontrado no índice %d.\n", result);
+    } else {
+        printf("Elemento não encontrado na lista.\n");
+    }
+
+    return 0;
+}
