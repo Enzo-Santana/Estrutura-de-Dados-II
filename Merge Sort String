@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Função para mesclar duas sublistas ordenadas
+void merge(char *arr[], int left, int mid, int right) {
+    // Tamanhos das duas sublistas
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    // Arrays temporários para armazenar as sublistas
+    char *leftArr[n1], *rightArr[n2];
+
+    // Copiar dados para os arrays temporários
+    for (int i = 0; i < n1; i++) {
+        leftArr[i] = arr[left + i];
+    }
+    for (int i = 0; i < n2; i++) {
+        rightArr[i] = arr[mid + 1 + i];
+    }
+
+    // Mesclar os arrays temporários de volta no array original
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (strcmp(leftArr[i], rightArr[j]) <= 0) {  // Comparação alfabética
+            arr[k] = leftArr[i];
+            i++;
+        } else {
+            arr[k] = rightArr[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copiar os elementos restantes, se houver
+    while (i < n1) {
+        arr[k] = leftArr[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        arr[k] = rightArr[j];
+        j++;
+        k++;
+    }
+}
+
+// Função recursiva para ordenar o array de strings
+void mergeSort(char *arr[], int left, int right) {
+    if (left < right) {
+        // Encontra o ponto médio da lista
+        int mid = left + (right - left) / 2;
+
+        // Ordena as duas metades recursivamente
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+
+        // Mescla as duas metades ordenadas
+        merge(arr, left, mid, right);
+    }
+}
+
+// Função para imprimir o array de strings
+void printArray(char *arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%s ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    // Array de strings a ser ordenado
+    char *arr[] = {"banana", "maçã", "laranja", "uva", "abacaxi", "melancia"};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Array original: \n");
+    printArray(arr, size);
+
+    mergeSort(arr, 0, size - 1);
+
+    printf("Array ordenado: \n");
+    printArray(arr, size);
+
+    return 0;
+}
