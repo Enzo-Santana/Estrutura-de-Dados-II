@@ -1,0 +1,9 @@
+O processo de preenchimento dos "baldes" no **Bucket Sort** começa com a distribuição dos elementos do array de entrada nos baldes. Cada balde representa um subintervalo dentro do intervalo total de valores, geralmente [0, 1), e os números são 
+distribuídos de acordo com sua magnitude relativa. Para determinar o balde no qual cada número deve ser colocado, utilizamos uma fórmula de indexação. 
+Para um número \( x \), a posição do balde é dada por \( \text{índice} = \text{int}(x \times \text{número de baldes}) \). Como exemplo, se tivermos 10 baldes e um número \( x = 0.42 \), ele será colocado no balde com índice 
+\( \text{índice} = \text{int}(0.42 \times 10) = 4 \). Isso mapeia os números para os baldes de acordo com sua posição relativa no intervalo.
+Depois de distribuir todos os elementos nos baldes, cada balde contém um conjunto de números que caem dentro do seu subintervalo. A ordenação de cada balde é o próximo passo. Como cada balde contém um número menor de elementos do que o array 
+original, é mais eficiente ordenar esses baldes separadamente usando um algoritmo de ordenação que funcione bem com listas pequenas, como o **Insertion Sort**. O Insertion Sort é ideal para baldes pequenos porque ele tem um desempenho ótimo em 
+listas pequenas, com uma complexidade de \( O(k^2) \), onde \( k \) é o número de elementos no balde. Se os elementos estiverem distribuídos uniformemente, cada balde terá poucos elementos, garantindo uma ordenação eficiente.
+Após a ordenação de todos os baldes, o último passo é combinar os elementos ordenados de cada balde para formar o array final ordenado. Isso é feito simplesmente percorrendo os baldes na ordem, retirando os elementos de cada balde ordenado e 
+colocando-os no array original, formando uma sequência ordenada. Esse processo de divisão e ordenação individual dos baldes aproveita a ideia de que, ao separar os elementos em intervalos, podemos reduzir a complexidade da ordenação geral.
