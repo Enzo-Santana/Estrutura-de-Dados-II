@@ -1,0 +1,7 @@
+
+O Ternary Search e o Binary Search têm complexidades de tempo similares, ambas sendo 𝑂(log𝑛), mas o Ternary Search divide o intervalo de busca em três partes, enquanto o Binary Search o divide em duas. Isso significa que, teoricamente, o 
+Ternary Search poderia reduzir o tamanho da lista mais rapidamente. No entanto, na prática, o Ternary Search pode ser ligeiramente menos eficiente do que o Binary Search, pois a sobrecarga de calcular dois pontos médios em cada iteração, além 
+de aumentar o número de comparações, pode acabar tornando o Ternary Search mais lento, principalmente em listas pequenas ou em implementações onde a divisão em três partes não oferece uma melhoria significativa. Em listas muito grandes, o 
+Ternary Search pode, em alguns casos, ser marginalmente mais eficiente, pois poderia teoricamente reduzir o número de recursões, já que a cada iteração ele elimina uma parte maior do espaço de busca. Porém, essa eficiência é frequentemente 
+ofuscada pela maior sobrecarga de cálculo de dois pontos médios e pelas constantes de execução, o que torna o Binary Search uma escolha mais popular e geralmente mais eficiente para a maioria dos casos. O Ternary Search pode ser mais útil em 
+situações em que uma divisão mais agressiva do intervalo é vantajosa, como quando a lista é muito grande e a diferença nas divisões pode ter um impacto perceptível no tempo de execução.
